@@ -73,12 +73,12 @@ internal inline fun <T1, T2, R> combine(
   source1: Observable<T1>,
   source2: Observable<T2>,
   crossinline combineFunction: (T1, T2) -> R
-) = combineLatest(source1, source2, BiFunction<T1, T2, R> { t1, t2 -> combineFunction(t1, t2) })!!
+) = combineLatest(source1, source2, BiFunction<T1, T2, R> { t1, t2 -> combineFunction(t1, t2) })
 
 internal fun <T1, T2> combine(
   source1: Observable<T1>,
   source2: Observable<T2>
-) = combineLatest(source1, source2, BiFunction<T1, T2, Pair<T1, T2>> { t1, t2 -> t1 to t2 })!!
+) = combineLatest(source1, source2, BiFunction<T1, T2, Pair<T1, T2>> { t1, t2 -> t1 to t2 })
 
 inline fun <T1, T2, T3, R> combine(
   source1: Observable<T1>,
@@ -119,3 +119,4 @@ fun Observable<Int>.subscribeImageViewTint(view: View): Disposable {
  */
 @CheckResult
 internal fun <T, R> Observable<T>.kFlatMap(mapper: RxMapper<T, R>) = flatMap(mapper) ?: blowUp()
+
